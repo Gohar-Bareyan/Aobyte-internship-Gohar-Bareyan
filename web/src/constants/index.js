@@ -14,3 +14,5 @@ export const RATE_NUMBERS = {
 }
 
 export const PAGES_COUNT = 5
+
+export const UNKNOWN = "Unknown"

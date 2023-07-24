@@ -43,3 +43,26 @@ export const deletePostComment = async (commentId) => {
     console.error("Error deleting comment:", error);
   };
 };
+
+export const ratePostComment = async (commentId, value) => {
+  const payload = {
+    commentId: commentId,
+    value: value,
+  };
+
+  try {
+    await axiosInstance.patch(`${API_ENDPOINT}/rate-post-comment`, payload)
+  } catch (error) {
+    console.error("Error deleting comment:", error);
+  };
+};
+
+export const addPostCommentReply = async (payload) => {
+
+  try {
+    const response = await axiosInstance.post(`${API_ENDPOINT}/add-post-comment-reply`, payload);
+    return response.data;
+  } catch (error) {
+    console.error("Error sending comment reply:", error);
+  };
+};

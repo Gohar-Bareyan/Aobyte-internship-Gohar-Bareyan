@@ -1,21 +1,25 @@
 import React, { useContext, useState } from "react";
 
 import PostsWithComments from "../../components/PostsWithComments";
-import { addPostComment, deletePostComment } from "../../api";
+import { addPostComment, deletePostComment, ratePostComment } from "../../api";
 import { DataContext } from "../../store/dataContext";
 import { PAGES_COUNT } from "../../constants";
 import { filteredPosts } from "../../helpers/functions";
+import { addPostCommentReply } from "../../api";
 
 const PostsWithCommentsContainer = (props) => {
   const { posts } = props;
 
   const { dispatch } = useContext(DataContext);
-
+  
   const [comment, setComment] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState("");
+  const [commentReply, setCommentReply] = useState("");
+  const [replyCommentId, setReplyCommentId] = useState(null);
   const [isReplyClicked, setIsReplyClicked] = useState(false);
+  const [isDescendingOrder, setIsDescendingOrder] = useState(true);
 
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
@@ -85,6 +89,71 @@ const PostsWithCommentsContainer = (props) => {
     }
   };
 
+  const handlePostCommentRating = async (data) => {
+    const { commentId, value } = data;
+
+    try {
+      await ratePostComment(commentId, value);
+
+      const updatedPosts = posts.map((post) => {
+        const updatedComments = post.postsComments.map((comment) => {
+          if (comment.id === commentId) {
+            return { ...comment, rate: value };
+          }
+          return comment;
+        });
+
+        return { ...post, postsComments: updatedComments };
+      });
+
+      dispatch({ type: "SET_POSTS", payload: updatedPosts });
+    } catch (error) {
+      console.log("Error rating comment", error);
+    }
+  };
+
+  const handleSortComments = (post) => {
+    post.postsComments.sort((a, b) => {
+      if (isDescendingOrder) {
+        return a.rate - b.rate;
+      }
+      return b.rate - a.rate;
+    });
+
+    setIsDescendingOrder((prevIsDescendingOrder) => !prevIsDescendingOrder);
+  };
+
+  const handleReplyButtonClick = (postId) => {
+    setIsReplyClicked(true);
+    setReplyCommentId(postId);
+  };
+
+  const handleCommentReplyChange = (event) => {
+    setCommentReply(event.target.value);
+  };
+
+  const handleSendCommentReply = async (
+    event,
+    commentId,
+    isClicked = false
+  ) => {
+    if (event.key === "Enter" || isClicked) {
+      event.preventDefault();
+
+      try {
+        await addPostCommentReply({
+          commentId,
+          commentReply,
+        });
+
+        setCommentReply("");
+
+      } catch (error) {
+        console.error("Error sending comment:", error);
+      }
+    }
+  };
+
   const allPosts = filteredPosts(currentPage, posts, searchQuery);
 
   return (
@@ -96,14 +165,20 @@ const PostsWithCommentsContainer = (props) => {
       PAGES_COUNT={PAGES_COUNT}
       currentPage={currentPage}
       searchQuery={searchQuery}
+      commentReply={commentReply}
+      replyCommentId={replyCommentId}
       isReplyClicked={isReplyClicked}
       handlePageChange={handlePageChange}
       handleSendComment={handleSendComment}
-      setIsReplyClicked={setIsReplyClicked}
+      handleSortComments={handleSortComments}
       handleCommentChange={handleCommentChange}
       handleAccordionChange={handleAccordionChange}
+      handleSendCommentReply={handleSendCommentReply}
+      handleReplyButtonClick={handleReplyButtonClick}
+      handlePostCommentRating={handlePostCommentRating}
       handleDeletePostComment={handleDeletePostComment}
       handleSearchQueryChange={handleSearchQueryChange}
+      handleCommentReplyChange={handleCommentReplyChange}
     />
   );
 };

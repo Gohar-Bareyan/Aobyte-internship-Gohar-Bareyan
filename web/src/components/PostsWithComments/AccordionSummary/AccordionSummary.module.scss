@@ -1,0 +1,39 @@
+@import "../../../styles/colors.scss";
+
+.accordion_summary {
+  .expand_icon {
+    color: $vivid_tangelo;
+  }
+
+  // .post_sender_data_container {
+  //   display: flex;
+  //   align-items: center;
+  //   margin-left: 70px;
+  //   margin-bottom: 12px;
+
+  //   .avatar {
+  //     width: 40px;
+  //     height: 40px;
+  //   }
+
+  //   .name_date_container {
+  //     margin-left: 10px;
+
+  //     .name {
+  //       font-size: 15px;
+  //       font-weight: 600;
+  //     }
+
+  //     .date {
+  //       font-size: 11px;
+  //       margin-top: -2px;
+  //       margin-left: 4px;
+  //     }
+  //   }
+  // }
+
+  .post_body {
+    width: 80%;
+    margin: auto;
+  }
+}

@@ -1,10 +1,8 @@
 @import "../../styles/colors.scss";
 
 .posts_with_comments_container {
-  width: 70%;
+  width: 60%;
   margin: auto;
-  overflow: auto;
-  display: grid;
   font-family: Arial, Helvetica, sans-serif;
 
   .search_input {
@@ -17,74 +15,40 @@
     border-radius: 15px;
     border: 1px solid $vivid_tangelo;
     background-color: $liquid_nitrogen;
-    margin-left: 2px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
+    margin-top: 40px;
 
     &::placeholder {
       color: $vivid_tangelo;
-      padding-left: 5px;
+      padding-left: 10px;
     }
   }
 
   .accordion {
     background-color: $almond_roca;
     border-bottom: 1px solid $vivid_tangelo;
-    margin: 10px;
-
-    .expand_icon {
-      color: $vivid_tangelo;
-    }
-
-    .post_title {
-      font-weight: 400;
-    }
+    margin-top: 25px;
 
     .accordion_details {
-      .add_comment_textarea_container {
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        .add_comment_textarea {
-          width: 74.5%;
-          height: 60px;
-          border: none;
-          padding: 12px 50px 0 12px;
-          resize: none;
-          margin-bottom: 5px;
-          border-radius: 4px;
-          background-color: $lotion;
-
-          &:focus {
-            outline: none;
-          }
-
-          &::placeholder {
-            font-size: 14px;
-          }
-        }
-
-        .send_comment_icon {
-          position: absolute;
-          right: 115px;
-          width: 25px;
-          margin-top: 13px;
-          fill: $india_green;
-          cursor: pointer;
-        }
+      .sort_icon {
+        fill: $white;
+        cursor: pointer;
+        float: right;
+        width: 25px;
+        height: 25px;
+        margin-right: 62px;
+        background: $dark_silver;
+        border-radius: 19px;
       }
 
       .comments_container {
         position: relative;
-        width: 80%;
+        width: 72.5%;
         margin: auto;
         border: 1px solid $white;
         background-color: $super_silver;
 
         .comment_body {
-          text-align: center;
-          display: grid;
           padding: 8px;
           font-size: 14px;
           margin-bottom: 5px;
@@ -99,77 +63,87 @@
 
           .comment {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            position: relative;
 
-            p {
-              width: 65%;
-              word-wrap: break-word;
-            }
-
-            .trash_box_icon {
-              position: absolute;
-              margin-left: 90%;
-              width: 20px;
+            .comment_body_content {
               display: flex;
-              cursor: pointer;
-              fill: $dark_silver;
+              justify-content: space-between;
 
-              &:hover {
-                fill: $cinnabar;
+              .comment_body_text {
+                width: 76%;
+                word-wrap: break-word;
+              }
+
+              .actions_container {
+                display: grid;
+
+                .trash_box_icon {
+                  margin-left: 90px;
+                  margin-bottom: -10px;
+                  width: 20px;
+                  cursor: pointer;
+                  fill: $dark_silver;
+
+                  &:hover {
+                    fill: $cinnabar;
+                  }
+                }
+
+                .reply_button {
+                  background-color: transparent;
+                  border: none;
+                  cursor: pointer;
+                  color: $dark_silver;
+                  margin-left: 66px;
+                  width: 40%;
+
+                  &:hover {
+                    color: blue;
+                  }
+                }
+
+                .rating_icon {
+                  margin-top: 2px;
+                  margin-left: -5px;
+                }
               }
             }
-          }
 
-          .reply_textarea {
-            width: 500px;
-            height: 25px;
-            border: none;
-            margin: auto;
-            resize: none;
-            margin-top: 10px;
-            border-radius: 4px;
-            background-color: $lotion;
-            cursor: pointer;
-            padding: 12px 50px 0 12px;
+            .reply_container {
+              position: relative;
 
-            &:focus {
-              outline: none;
+              .reply_textarea {
+                width: 340px;
+                height: 25px;
+                border: none;
+                resize: none;
+                border-radius: 4px;
+                background-color: $lotion;
+                cursor: pointer;
+                padding: 8px 30px 0 8px;
+
+                &:focus {
+                  outline: none;
+                }
+
+                &::placeholder {
+                  font-size: 12px;
+                }
+              }
+
+              .reply_comment_icon {
+                position: absolute;
+                width: 20px;
+                right: 248px;
+                fill: #0b850b;
+                cursor: pointer;
+                margin-top: 5px;
+                height: 25px;
+
+                &:hover {
+                  color: blue;
+                }
+              }
             }
-
-            &::placeholder {
-              padding-top: 3px;
-              font-size: 12px;
-            }
-          }
-
-          .reply_button {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            color: $dark_silver;
-            display: flex;
-            justify-content: end;
-            width: 98%;
-
-            &:hover {
-              color: blue;
-            }
-          }
-        }
-
-        .reply_comment_icon {
-          position: absolute;
-          width: 20px;
-          right: 136px;
-          fill: #0b850b;
-          cursor: pointer;
-          margin-top: 15px;
-          height: 25px;
-
-          &:hover {
-            color: blue;
           }
         }
       }

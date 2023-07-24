@@ -1,0 +1,22 @@
+.comment_sender_data_container {
+  display: flex;
+  align-items: center;
+
+  .avatar {
+    width: 28px;
+    height: 28px;
+  }
+
+  .name_date_container {
+    margin-left: 5px;
+
+    .name {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .date {
+      font-size: 11px;
+    }
+  }
+}
