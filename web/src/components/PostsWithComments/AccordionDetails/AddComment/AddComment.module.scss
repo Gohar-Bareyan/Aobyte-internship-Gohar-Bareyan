@@ -1,0 +1,35 @@
+@import "../../../../styles/colors.scss";
+
+.add_comment_textarea_container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  .add_comment_textarea {
+    width: 65%;
+    height: 60px;
+    border: none;
+    padding: 12px 50px 0 12px;
+    resize: none;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    background-color: $lotion;
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      font-size: 14px;
+    }
+  }
+
+  .send_comment_icon {
+    position: absolute;
+    right: 128px;
+    width: 25px;
+    margin-top: 13px;
+    fill: $india_green;
+    cursor: pointer;
+  }
+}

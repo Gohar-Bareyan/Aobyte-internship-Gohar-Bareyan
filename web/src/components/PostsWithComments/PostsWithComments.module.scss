@@ -1,0 +1,164 @@
+@import "../../styles/colors.scss";
+
+.posts_with_comments_container {
+  width: 60%;
+  margin: auto;
+  font-family: Arial, Helvetica, sans-serif;
+
+  .search_input {
+    padding: 5px;
+    width: 250px;
+    height: 25px;
+    cursor: pointer;
+    outline: none;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    border: 1px solid $vivid_tangelo;
+    background-color: $liquid_nitrogen;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+
+    &::placeholder {
+      color: $vivid_tangelo;
+      padding-left: 10px;
+    }
+  }
+
+  .accordion {
+    background-color: $almond_roca;
+    border-bottom: 1px solid $vivid_tangelo;
+    margin-top: 25px;
+
+    .accordion_details {
+      .sort_icon {
+        fill: $white;
+        cursor: pointer;
+        float: right;
+        width: 25px;
+        height: 25px;
+        margin-right: 62px;
+        background: $dark_silver;
+        border-radius: 19px;
+      }
+
+      .comments_container {
+        position: relative;
+        width: 72.5%;
+        margin: auto;
+        border: 1px solid $white;
+        background-color: $super_silver;
+
+        .comment_body {
+          padding: 8px;
+          font-size: 14px;
+          margin-bottom: 5px;
+          border-radius: 8px;
+          background-color: $alabaster;
+          border-bottom: 1px solid $vivid_tangelo;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          &:hover {
+            background-color: $super_silver;
+          }
+
+          .comment {
+            width: 100%;
+
+            .comment_body_content {
+              display: flex;
+              justify-content: space-between;
+
+              .comment_body_text {
+                width: 76%;
+                word-wrap: break-word;
+              }
+
+              .actions_container {
+                display: grid;
+
+                .trash_box_icon {
+                  margin-left: 90px;
+                  margin-bottom: -10px;
+                  width: 20px;
+                  cursor: pointer;
+                  fill: $dark_silver;
+
+                  &:hover {
+                    fill: $cinnabar;
+                  }
+                }
+
+                .reply_button {
+                  background-color: transparent;
+                  border: none;
+                  cursor: pointer;
+                  color: $dark_silver;
+                  margin-left: 66px;
+                  width: 40%;
+
+                  &:hover {
+                    color: blue;
+                  }
+                }
+
+                .rating_icon {
+                  margin-top: 2px;
+                  margin-left: -5px;
+                }
+              }
+            }
+
+            .reply_container {
+              position: relative;
+
+              .reply_textarea {
+                width: 340px;
+                height: 25px;
+                border: none;
+                resize: none;
+                border-radius: 4px;
+                background-color: $lotion;
+                cursor: pointer;
+                padding: 8px 30px 0 8px;
+
+                &:focus {
+                  outline: none;
+                }
+
+                &::placeholder {
+                  font-size: 12px;
+                }
+              }
+
+              .reply_comment_icon {
+                position: absolute;
+                width: 20px;
+                right: 248px;
+                fill: #0b850b;
+                cursor: pointer;
+                margin-top: 5px;
+                height: 25px;
+
+                &:hover {
+                  color: blue;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .item_not_found {
+    width: 500px;
+    height: 300px;
+    margin: auto;
+  }
+
+  .pagination_container {
+    display: flex;
+    align-items: end;
+    margin-top: 20px;
+  }
+}

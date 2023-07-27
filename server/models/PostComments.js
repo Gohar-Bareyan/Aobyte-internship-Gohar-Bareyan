@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const PostsComments = sequelize.define("posts_comments", {
+    return sequelize.define("posts_comments", {
         body: {
             type: Sequelize.STRING
         },
@@ -14,9 +14,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
         },
         rate: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.FLOAT,
             defaultValue: 0,
         }
     })
-    return PostsComments
 }
